@@ -42,6 +42,8 @@ namespace Assignment4
                 famName = validator.ValidateString("Please enter your family name: ");
                 accList.Add(new Account(accNumb, givName, famName, INITIAL_BALANCE_VALUE));
             }
+            else
+                Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
     }
 }
