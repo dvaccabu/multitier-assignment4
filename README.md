@@ -1,6 +1,8 @@
 # multitier-assignmet4
 pw2Bank-albelis-sony-nidhi-ramesh-gabriel-david 
 
+Please add documentation to your code
+
 1.	Add a bank account. (Gabriel)
 2.	Remove a bank account. (Nidhi)
 3.	Display the information of a particular client’s account. (by account number) (Nidhi)
