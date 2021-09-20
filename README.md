@@ -1,4 +1,4 @@
-# multitier-assignmet4
+# multitier-assignment4
 pw2Bank-albelis-sony-nidhi-ramesh-gabriel-david 
 
 Please add documentation to your code
