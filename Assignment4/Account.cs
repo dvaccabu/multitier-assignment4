@@ -15,8 +15,6 @@ namespace Assignment4
             FamilyName = fn;
             GivenName = gn;
             Balance = b;
-        }
-
-        
+        }        
     }
 }
