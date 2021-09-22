@@ -50,6 +50,17 @@ namespace Assignment4
             while (Validator.IsAccNumberExist(accList, result))
                 result++;            
             return result;
-        }        
+        }
+        public static bool ValidateChoiceMenuDisplayListOne(String choice) {
+            choice = choice.ToUpper().Trim();
+            if (choice != "A" || choice != "B" || choice != "C" || choice != "D") { return false; }
+            else { return true; }
+        }
+        public static bool ValidateChoiceMenuDisplayListAscendingDescending(String choice)
+        {
+            choice = choice.Trim();
+            if (choice != "1" || choice != "2" || choice != "3") { return false; }
+            else { return true; }
+        }
     }
 }

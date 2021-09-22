@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 /*Group: Albelis Gregoria Becea Marrero,  
  * Rameswari Vipul Bhoi,
@@ -28,6 +30,44 @@ namespace Assignment4
             //{
             //    Console.WriteLine($"Account Number is {item.AccountNumber}\tAccount given name is {item.GivenName}\tAccount Family name is {item.FamilyName}\tAccount Balance name is {item.Balance}\n");
             //}
+
+            //----SORTING LIST
+            String firstChoice, secondChoice;
+            do
+            {
+                DisplayListMenuOne();
+                firstChoice = CheckingFirstChoice();
+                switch (firstChoice)
+                {
+                    case "list":
+                        Console.WriteLine("\n\tUNSORTED LIST\n\t==============");
+                        foreach (Account item in accList) { Console.WriteLine(item); }
+                        Console.ReadKey();
+                        break;
+                   
+                    case "ascending":
+                        DisplayListAscendingMenu();
+                        secondChoice = CheckingSecondChoice();
+                        Console.WriteLine("\n\tSORTED LIST BY ASCENDING "+ secondChoice.ToUpper()+"\n\t===================================");
+                        DisplayAscendingList(accList, secondChoice);
+                        Console.WriteLine("Press any key to go back to the Sorting List Menu");
+                        Console.ReadKey();
+                        break;
+                    case "descending":
+                        DisplayListDescendingMenu();
+                        secondChoice = CheckingSecondChoice();
+                        Console.WriteLine("\n\tSORTED LIST BY DESCENDING "+secondChoice.ToUpper()+ "\n\t==================================");
+                        DisplayDescendingList(accList, secondChoice);
+                        Console.WriteLine("Press any key to go back to the Sorting List Menu");
+                        Console.ReadKey();
+                        break;
+                    case "back":
+                        firstChoice = null;
+                        break;
+                       
+                }
+            } while (firstChoice!=null);
+            //-----SORTING LIST
         }
         public static void AddAccount(List<Account> accList)
         {            
@@ -50,6 +90,85 @@ namespace Assignment4
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
-        
+        // -----------SORTING LIST -------
+
+        public static string CheckingFirstChoice() {         
+           String choice = Console.ReadLine();
+            bool val;
+            val=Validator.ValidateChoiceMenuDisplayListOne(choice);
+            if (val == true) {choice=choice; }
+            else { Console.WriteLine("Invalid Entry Try againg");choice = Console.ReadLine();}
+            switch (choice)
+            {
+                case "A":
+                    return "list";
+                case "B":
+                    return "ascending";
+                case "C":
+                    return "descending";
+                case "D":
+                    return "back";
+                default: { return null; }
+            }
+
+        }
+        public static string CheckingSecondChoice()
+        {
+            String choice = Console.ReadLine();
+            //ENTER VALIDATE FUNCTIONS
+            switch (choice)
+            {
+                case "1":
+                    return "GivenName";
+                case "2":
+                    return "FamilyName";
+                case "3":
+                    return "Balance";
+                
+                default: { return null; }
+            }
+
+        }
+        public static void DisplayListMenuOne()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\t==SORTING LIST MENU==\n\t====================");
+            Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\nD - Go Back");
+            Console.Write("Please make your Choice: ");
+        }
+        public static void DisplayListAscendingMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\tASCENDING SORTING MENU\n\t========================");
+            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance");
+            Console.Write("Please make your Choice: ");
+        }
+        public static void DisplayListDescendingMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\tDESCENDING SORTING MENU\n\t========================");
+            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance");
+            Console.Write("Please make your Choice: ");
+        }
+        public static void DisplayAscendingList(List<Account> accList, string field) {
+
+            List<Account> sortedAscending = accList.OrderBy(x => {
+                PropertyInfo info = x.GetType().GetProperty(field);
+                return info.GetValue(x);
+            }).ToList();
+            foreach (Account item in sortedAscending) { Console.WriteLine(item); }
+
+        }
+        public static void DisplayDescendingList(List<Account> accList, string field)
+        {
+            List<Account> sortedAscending = accList.OrderByDescending(x => {
+                PropertyInfo info = x.GetType().GetProperty(field);
+                return info.GetValue(x);
+            }).ToList();
+            foreach (Account item in sortedAscending) { Console.WriteLine(item); }
+        }
+
+        // -----------SORTING LIST -------
+
     }
 }

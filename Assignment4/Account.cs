@@ -15,6 +15,10 @@ namespace Assignment4
             FamilyName = fn;
             GivenName = gn;
             Balance = b;
-        }        
+        }
+        public override string ToString()
+        {
+            return AccountNumber+"\t\t"+ GivenName + "\t\t" + FamilyName + "\t\t" + Balance;
+        }
     }
 }
