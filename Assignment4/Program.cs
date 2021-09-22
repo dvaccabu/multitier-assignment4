@@ -94,10 +94,7 @@ namespace Assignment4
 
         public static string CheckingFirstChoice() {         
            String choice = Console.ReadLine();
-            bool val;
-            val=Validator.ValidateChoiceMenuDisplayListOne(choice);
-            if (val == true) {choice=choice; }
-            else { Console.WriteLine("Invalid Entry Try againg");choice = Console.ReadLine();}
+            //I need to validate choice
             switch (choice)
             {
                 case "A":
