@@ -231,22 +231,16 @@ namespace Assignment4
             }
 
         }
+        public enum EnumAccountField
+        {
+            GivenName,
+            FamilyName,
+            Balance,
+        }
         public static string CheckingSecondChoice()
         {
-            String choice = Console.ReadLine();
-            //ENTER VALIDATE FUNCTIONS
-            switch (choice)
-            {
-                case "1":
-                    return "GivenName";
-                case "2":
-                    return "FamilyName";
-                case "3":
-                    return "Balance";
-
-                default: { return null; }
-            }
-
+            Enum.TryParse(Console.ReadLine(),out EnumAccountField choice); //It goes with GivenName if there is no match with user's entry            
+            return choice.ToString();            
         }
         public static void DisplayListMenuOne()
         {
