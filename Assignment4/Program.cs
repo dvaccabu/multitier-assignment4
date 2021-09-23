@@ -248,7 +248,7 @@ namespace Assignment4
             Console.WriteLine("\n\t==SORTING LIST MENU==\n\t====================");
             Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\n" +
                 "D - Deposite Amount\nE - Withdraw Amount\nF - Display Average Balance Amount\nG - Display List Total Balance Amount\n" +
-                "H- Add Account\nI - Remove Account\nJ - Go Back");
+                "H - Add Account\nI - Remove Account\nJ - Go Back");
             Console.Write("Please make your Choice: ");
         }
         public static void DisplayListAscendingMenu()
