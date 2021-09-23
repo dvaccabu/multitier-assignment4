@@ -17,3 +17,15 @@ Please add documentation to your code
 12.	Integration (David) 
 
 Due date 27/09/2021
+
+
+# multitier-assignment5
+
+Remember assignment 4?  You do it WITHOUT ANY BUILT-IN FUNCTION !
+What means? You take for example sort() method , and you create your own sort method.
+
+1. Create a new branch for assignment 5
+2. Create the static class Utils
+3. Add to Utils all the new functions to replace the BUILT-IN FUNCTIONS
+
+Due date 04/10/2021
