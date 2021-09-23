@@ -19,23 +19,48 @@ namespace Assignment4
             } while (String.IsNullOrEmpty(temp) || Regex.IsMatch(temp, @"\d+"));
             return temp;
         }
-        public double ValidateDouble(string message)
+        public double ValidateDouble(string message, int? max = null, int? min = null)
         {
-            double temp = 0;
-            bool flag = false;
+            double temp;
+            bool flag;
             do
             {
-                try
+                Console.Write(message);
+                flag = Double.TryParse(Console.ReadLine().Trim(), out temp);
+                if (max != null && temp > max)
                 {
-                    Console.Write(message);
-                    temp = Double.Parse(Console.ReadLine().Trim());
-                    if (temp < 0) throw new Exception("Please enter a valid number");
-                    flag = true;
+                    Console.WriteLine($"Please enter a number smaller than {max}.");
+                    flag = false;
                 }
-                catch (Exception e)
+                else if (min != null && temp < min)
                 {
-                    Console.WriteLine("Please enter a valid number");
+                    Console.WriteLine($"Please enter a integer number bigger than {min}.");
+                    flag = false;
                 }
+                else if (!flag)                
+                    Console.WriteLine("Please enter a number.");
+                
+            } while (!flag);
+            return temp;
+        }
+        public int ValidateInteger(string message, int? max = null, int? min=null)
+        {
+            int temp;
+            bool flag;
+            do
+            {
+                Console.Write(message);
+                flag = Int32.TryParse(Console.ReadLine().Trim(), out temp); 
+                if (max != null && temp > max)
+                {
+                    Console.WriteLine($"Please enter a integer number smaller than {max}.");
+                    flag = false;
+                }else if (min != null && temp < min)
+                {
+                    Console.WriteLine($"Please enter a integer number bigger than {min}.");
+                    flag = false;
+                }else if (!flag)
+                    Console.WriteLine("Please enter a number.");
             } while (!flag);
             return temp;
         }
@@ -46,6 +71,7 @@ namespace Assignment4
         }
         public byte FindEmptyAccNb(List<Account> accList)
         {
+            //Finds a empty slot in AccNumber and returns it.
             byte result = 0;
             while (IsAccNumberExist(accList, result))
                 result++;

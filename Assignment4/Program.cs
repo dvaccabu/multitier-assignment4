@@ -21,12 +21,12 @@ namespace Assignment4
         {
             //for addition testing
             List<Account> accList = new List<Account>();
-            Account ac1 = new Account(101, "Bhoi", "Rameswari",2300);
-            Account ac2 = new Account(102,"Oza","Nidhi",2650);
-            Account ac3 = new Account(103, "Nathani", "Soniya", 2200);
-            Account ac4 = new Account(104, "Vacca", "David", 2350);
-            Account ac5 = new Account(105, "Gregoria", "Albelis", 3400);
-            Account ac6 = new Account(106, "Paz", "Gabriel", 3700);
+            Account ac1 = new Account(10000, "Bhoi", "Rameswari",2300);
+            Account ac2 = new Account(10001, "Oza","Nidhi",2650);
+            Account ac3 = new Account(10002, "Nathani", "Soniya", 2200);
+            Account ac4 = new Account(10003, "Vacca", "David", 2350);
+            Account ac5 = new Account(10004, "Gregoria", "Albelis", 3400);
+            Account ac6 = new Account(10005, "Paz", "Gabriel", 3700);
             accList.Add(ac1);
             accList.Add( ac2);
             accList.Add(ac3);
@@ -81,7 +81,7 @@ namespace Assignment4
                         accNo = Convert.ToInt32(Console.ReadLine());
                         if (validator.IsAccNumberExist(accList, accNo) == true)
                         {
-                            amount = validator.ValidateDouble("Enter Deposit Balance Amount:");
+                            amount = validator.ValidateDouble("Enter Deposit Balance Amount:",min: 0);
                             foreach (Account ac in accList)
                             {
                                 if (ac.AccountNumber == accNo)
@@ -105,7 +105,7 @@ namespace Assignment4
                             bool isAmount = false;
                             do
                             {
-                                amount = validator.ValidateDouble("Enter Withdraw Balance Amount:");
+                                amount = validator.ValidateDouble("Enter Withdraw Balance Amount:", min: 0);
                                 foreach (Account ac in accList)
                                 {
                                     if (ac.AccountNumber == accNo && ac.Balance >= amount)
@@ -120,9 +120,8 @@ namespace Assignment4
                         }
                         else
                         {
-                            Console.WriteLine("Account Number Not Exist !...");
+                            Console.WriteLine("Account Number Does Not Exist !..."); // SUGESTION: Just the first letter uppercase.
                         }
-
                         Console.ReadKey();
                         break;
                     case "average":
@@ -150,8 +149,7 @@ namespace Assignment4
                         Console.ReadKey();
                         break;
                     case "Remove":
-                        Console.Write("Enter Account Number:");
-                        accNo = Convert.ToInt32(Console.ReadLine());
+                        accNo = validator.ValidateInteger("Enter Account Number:",min: 10000); // the question mentions to start at number 10000, that why min is 10000
                         if (validator.IsAccNumberExist(accList, accNo) == true)
                         {
                             foreach (Account ac in accList)
@@ -227,7 +225,6 @@ namespace Assignment4
                     return "Back";
                 default: { return null; }
             }
-
         }
         
         public static string CheckingSecondChoice()
@@ -260,13 +257,11 @@ namespace Assignment4
         }
         public static void DisplayAscendingList(List<Account> accList, string field)
         {
-
             List<Account> sortedAscending = accList.OrderBy(x => {
                 PropertyInfo info = x.GetType().GetProperty(field);
                 return info.GetValue(x);
             }).ToList();
             foreach (Account item in sortedAscending) { Console.WriteLine(item); }
-
         }
         public static void DisplayDescendingList(List<Account> accList, string field)
         {
