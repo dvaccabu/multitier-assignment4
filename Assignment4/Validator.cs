@@ -64,6 +64,27 @@ namespace Assignment4
             } while (!flag);
             return temp;
         }
+        public string ValidateMenu(string message, String[] options)
+        {
+            string temp;
+            bool flag = false;
+            do
+            {                
+                temp = ValidateString(message);
+                if (!Array.Exists(options, element => element == temp))
+                {
+                    Console.Write("Please enter a character between ");
+                    foreach (string str in options)
+                        Console.Write(str + ", ");
+                    Console.Write(".\n");
+                    flag = false;
+                }
+                else
+                    flag = true;
+                    
+            } while (!flag);
+            return temp;
+        }
         public  bool IsAccNumberExist(List<Account> accList, int accNumber)
         {
             if (accList.Exists(x => x.AccountNumber == accNumber)) return true;

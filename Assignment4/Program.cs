@@ -46,11 +46,13 @@ namespace Assignment4
             String firstChoice, secondChoice;
             int accNo;
             double amount;
+            //String[] opt = {"a", "b", "c", "d"};
             
             Validator validator = new Validator();
             do
             {
                 DisplayListMenuOne();
+                //firstChoice = validator.ValidateMenu("Please make your Choice: ", opt); // suggestion
                 firstChoice = CheckingFirstChoice();
                 switch (firstChoice)
                 {
@@ -201,6 +203,7 @@ namespace Assignment4
         {
             String choice = Console.ReadLine().Trim().ToUpper() ;
             //I need to validate choice
+            //try to use ValidadeChar(MessageToDisplay, array_of_options)
             switch (choice)
             {
                 case "A":
