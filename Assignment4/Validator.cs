@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
@@ -39,19 +39,20 @@ namespace Assignment4
             } while (!flag);
             return temp;
         }
-        public static bool IsAccNumberExist(List<Account> accList, double accNumber)
+        public  bool IsAccNumberExist(List<Account> accList, int accNumber)
         {
-            if (accList.Exists(x=> x.AccountNumber == accNumber)) return true;
+            if (accList.Exists(x => x.AccountNumber == accNumber)) return true;
             else return false;
         }
         public byte FindEmptyAccNb(List<Account> accList)
         {
             byte result = 0;
-            while (Validator.IsAccNumberExist(accList, result))
-                result++;            
+            while (IsAccNumberExist(accList, result))
+                result++;
             return result;
         }
-        public static bool ValidateChoiceMenuDisplayListOne(String choice) {
+        public static bool ValidateChoiceMenuDisplayListOne(String choice)
+        {
             choice = choice.ToUpper().Trim();
             if (choice != "A" || choice != "B" || choice != "C" || choice != "D") { return false; }
             else { return true; }
