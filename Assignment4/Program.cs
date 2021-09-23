@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,10 +21,21 @@ namespace Assignment4
         {
             //for addition testing
             List<Account> accList = new List<Account>();
-
+            Account ac1 = new Account(101, "Bhoi", "Rameswari",2300);
+            Account ac2 = new Account(102,"Oza","Nidhi",2650);
+            Account ac3 = new Account(103, "Nathani", "Soniya", 2200);
+            Account ac4 = new Account(104, "Vacca", "David", 2350);
+            Account ac5 = new Account(105, "Gregoria", "Albelis", 3400);
+            Account ac6 = new Account(106, "Paz", "Gabriel", 3700);
+            accList.Add(ac1);
+            accList.Add( ac2);
+            accList.Add(ac3);
+            accList.Add(ac4);
+            accList.Add(ac5);
+            accList.Add(ac6);
             //Option 1 - Add()
-            AddAccount(accList);
             
+
             ////display for testing
             //foreach (Account item in accList)
             //{
@@ -33,6 +44,10 @@ namespace Assignment4
 
             //----SORTING LIST
             String firstChoice, secondChoice;
+            int accNo;
+            double amount;
+            
+            Validator validator = new Validator();
             do
             {
                 DisplayListMenuOne();
@@ -44,11 +59,11 @@ namespace Assignment4
                         foreach (Account item in accList) { Console.WriteLine(item); }
                         Console.ReadKey();
                         break;
-                   
+
                     case "ascending":
                         DisplayListAscendingMenu();
                         secondChoice = CheckingSecondChoice();
-                        Console.WriteLine("\n\tSORTED LIST BY ASCENDING "+ secondChoice.ToUpper()+"\n\t===================================");
+                        Console.WriteLine("\n\tSORTED LIST BY ASCENDING " + secondChoice.ToUpper() + "\n\t===================================");
                         DisplayAscendingList(accList, secondChoice);
                         Console.WriteLine("Press any key to go back to the Sorting List Menu");
                         Console.ReadKey();
@@ -56,44 +71,139 @@ namespace Assignment4
                     case "descending":
                         DisplayListDescendingMenu();
                         secondChoice = CheckingSecondChoice();
-                        Console.WriteLine("\n\tSORTED LIST BY DESCENDING "+secondChoice.ToUpper()+ "\n\t==================================");
+                        Console.WriteLine("\n\tSORTED LIST BY DESCENDING " + secondChoice.ToUpper() + "\n\t==================================");
                         DisplayDescendingList(accList, secondChoice);
                         Console.WriteLine("Press any key to go back to the Sorting List Menu");
                         Console.ReadKey();
                         break;
+                    case "deposite":
+                        Console.Write("Enter Account Number:");
+                        accNo = Convert.ToInt32(Console.ReadLine());
+                        if (validator.IsAccNumberExist(accList, accNo) == true)
+                        {
+                            amount = validator.ValidateDouble("Enter Deposit Balance Amount:");
+                            foreach (Account ac in accList)
+                            {
+                                if (ac.AccountNumber == accNo)
+                                {
+                                    ac.Balance += amount;
+                                }
+                            }
+                            Console.WriteLine("Deposite Succeed!..");
+                        }
+                        else {
+                            Console.WriteLine("Account Number Not Exist !...");
+                        }
+                        
+                        Console.ReadKey();
+                        break;
+                    case "withdraw":
+                        Console.Write("Enter Account Number:");
+                        accNo = Convert.ToInt32(Console.ReadLine());
+                        if (validator.IsAccNumberExist(accList, accNo) == true)
+                        {
+                            bool isAmount = false;
+                            do
+                            {
+                                amount = validator.ValidateDouble("Enter Withdraw Balance Amount:");
+                                foreach (Account ac in accList)
+                                {
+                                    if (ac.AccountNumber == accNo && ac.Balance >= amount)
+                                    {
+                                        ac.Balance -= amount;
+                                        Console.WriteLine("Withdraw Succeed!..");
+                                        isAmount = true;
+                                    }
+                                }
+                                
+                            } while (isAmount == false);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Account Number Not Exist !...");
+                        }
+
+                        Console.ReadKey();
+                        break;
+                    case "average":
+                        int count = accList.Count;
+                        Double total = 0;
+                        foreach (Account ac in accList)
+                        {
+                            total += ac.Balance;
+                        }
+                        double averageBal = total / count;
+                        Console.WriteLine("Average Balance is " + averageBal);
+                        Console.ReadKey();
+                        break;
+                    case "total":
+                        total = 0;
+                        foreach (Account ac in accList)
+                        {
+                            total += ac.Balance;
+                        }
+                        Console.WriteLine("Total Balance is " + total);
+                        Console.ReadKey();
+                        break;
+                    case "Add":
+                        AddAccount(accList);
+                        Console.ReadKey();
+                        break;
+                    case "Remove":
+                        Console.Write("Enter Account Number:");
+                        accNo = Convert.ToInt32(Console.ReadLine());
+                        if (validator.IsAccNumberExist(accList, accNo) == true)
+                        {
+                            foreach (Account ac in accList)
+                            {
+                                if (ac.AccountNumber == accNo)
+                                {
+                                    accList.Remove(ac);
+                                    Console.WriteLine("Account Removed");
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            Console.WriteLine("Account Number is not Exist!!");
+                        }
+                        Console.ReadKey();
+                        break;
                     case "back":
                         firstChoice = null;
+                        Console.WriteLine("Thank you for using this application !...");
+                        Console.ReadKey();
                         break;
-                       
                 }
-            } while (firstChoice!=null);
+            } while (firstChoice != null);
             //-----SORTING LIST
         }
         public static void AddAccount(List<Account> accList)
-        {            
+        {
             byte accNumb; //byte because every account number start with a fixed "10". It may change deppending on the team.
             string givName, famName;
             const int MAX_NB_OF_ACC = 100;
             //const int STEP = 1; //METHOD 1
             const int INITIAL_BALANCE_VALUE = 0;
-            
+
             Validator validator = new Validator();
-            
+
             if (accList.Count <= MAX_NB_OF_ACC) //Checks if there is any space left for account
             {
                 //accNumb = (byte)(accList.Count - 1 + STEP); //-1 because it needs to start at 0 METHOD 1
                 accNumb = validator.FindEmptyAccNb(accList);
                 givName = validator.ValidateString("Please enter your given name: ");
                 famName = validator.ValidateString("Please enter your family name: ");
-                accList.Add(new Account(accNumb, givName, famName, INITIAL_BALANCE_VALUE));
+                accList.Add(new Account(accNumb, famName, givName, INITIAL_BALANCE_VALUE));
             }
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
         // -----------SORTING LIST -------
 
-        public static string CheckingFirstChoice() {         
-           String choice = Console.ReadLine();
+        public static string CheckingFirstChoice()
+        {
+            String choice = Console.ReadLine().Trim().ToUpper() ;
             //I need to validate choice
             switch (choice)
             {
@@ -104,7 +214,19 @@ namespace Assignment4
                 case "C":
                     return "descending";
                 case "D":
-                    return "back";
+                    return "deposite";
+                case "E":
+                    return "withdraw";
+                case "F":
+                    return "average";
+                case "G":
+                    return "total";
+                case "H":
+                    return "Add";
+                case "I":
+                    return "Remove";
+                case "J":
+                    return "Back";
                 default: { return null; }
             }
 
@@ -121,7 +243,7 @@ namespace Assignment4
                     return "FamilyName";
                 case "3":
                     return "Balance";
-                
+
                 default: { return null; }
             }
 
@@ -130,7 +252,9 @@ namespace Assignment4
         {
             Console.Clear();
             Console.WriteLine("\n\t==SORTING LIST MENU==\n\t====================");
-            Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\nD - Go Back");
+            Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\n" +
+                "D - Deposite Amount\nE - Withdraw Amount\nF - Display Average Balance Amount\nG - Display List Total Balance Amount\n" +
+                "H- Add Account\nI - Remove Account\nJ - Go Back");
             Console.Write("Please make your Choice: ");
         }
         public static void DisplayListAscendingMenu()
@@ -147,7 +271,8 @@ namespace Assignment4
             Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance");
             Console.Write("Please make your Choice: ");
         }
-        public static void DisplayAscendingList(List<Account> accList, string field) {
+        public static void DisplayAscendingList(List<Account> accList, string field)
+        {
 
             List<Account> sortedAscending = accList.OrderBy(x => {
                 PropertyInfo info = x.GetType().GetProperty(field);
