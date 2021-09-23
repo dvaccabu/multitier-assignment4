@@ -182,19 +182,17 @@ namespace Assignment4
         {
             byte accNumb; //byte because every account number start with a fixed "10". It may change deppending on the team.
             string givName, famName;
-            const int MAX_NB_OF_ACC = 100;
-            //const int STEP = 1; //METHOD 1
+            const int MAX_NB_OF_ACC = 100;           
             const int INITIAL_BALANCE_VALUE = 0;
 
             Validator validator = new Validator();
 
             if (accList.Count <= MAX_NB_OF_ACC) //Checks if there is any space left for account
-            {
-                //accNumb = (byte)(accList.Count - 1 + STEP); //-1 because it needs to start at 0 METHOD 1
+            {               
                 accNumb = validator.FindEmptyAccNb(accList);
                 givName = validator.ValidateString("Please enter your given name: ");
                 famName = validator.ValidateString("Please enter your family name: ");
-                accList.Add(new Account(accNumb, famName, givName, INITIAL_BALANCE_VALUE));
+                accList.Add(new Account((accNumb + 10000), famName, givName, INITIAL_BALANCE_VALUE)); // added 10000 because it starts at 10000
             }
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
@@ -231,12 +229,7 @@ namespace Assignment4
             }
 
         }
-        public enum EnumAccountField
-        {
-            GivenName,
-            FamilyName,
-            Balance,
-        }
+        
         public static string CheckingSecondChoice()
         {
             Enum.TryParse(Console.ReadLine(),out EnumAccountField choice); //It goes with GivenName if there is no match with user's entry            
