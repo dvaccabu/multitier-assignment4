@@ -53,6 +53,7 @@ namespace Assignment4
                 if (ac.AccountNumber == accNo)
                 {
                     ac.Balance += amount;
+                    break;
                 }
             }
             Console.WriteLine("Deposite Succeed!..");
@@ -60,21 +61,15 @@ namespace Assignment4
 
         internal void Withdraw(List<Account> accList, int accNo, double amount)
         {
-            bool isAmount = false;
-            do
+            foreach (Account ac in accList)
             {
-                //amount = validator.ValidateDouble("Enter Withdraw Balance Amount:", min: 0);
-                foreach (Account ac in accList)
+                if (ac.AccountNumber == accNo)
                 {
-                    if (ac.AccountNumber == accNo && ac.Balance >= amount)
-                    {
-                        ac.Balance -= amount;
-                        Console.WriteLine("Withdraw Succeed!..");
-                        isAmount = true;
-                    }
+                    ac.Balance -= amount;
+                    Console.WriteLine("Withdraw Succeed!..");
+                    break;
                 }
-
-            } while (isAmount == false);
+            }
         }
 
         internal void RemoveAccount(List<Account> accList, int accNo)

@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment4
 {
@@ -78,6 +79,11 @@ namespace Assignment4
             while (IsAccNumberExist(accList, result) && result <= ceil)
                 result++;
             return result;
+        }
+
+        internal static bool ValidateWithdrawBalance(List<Account> accList, int accNo, double amount)
+        {
+            return accList.First(item => item.AccountNumber == accNo).Balance >= amount;
         }
     }
 }

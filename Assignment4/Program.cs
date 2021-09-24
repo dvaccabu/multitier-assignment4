@@ -69,7 +69,10 @@ namespace Assignment4
                         if (Validator.IsAccNumberExist(accList, accNo))
                         {
                             double amount = Validator.ValidateDouble("Enter Withdraw Balance Amount:", min: 0);
-                            ac.Withdraw(accList, accNo, amount);
+                            if (Validator.ValidateWithdrawBalance(accList, accNo, amount))
+                                ac.Withdraw(accList, accNo, amount);
+                            else
+                                Console.WriteLine("Amount exceeds the current balance");
                         }
                         else
                             Console.WriteLine("Account Number does not Exist!!");
