@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-/*Group: Albelis Gregoria Becea Marrero,  
+/*Group: Albelis Becea,  
  * Rameswari Vipul Bhoi,
  * Soniya Sirajali Nathani,
  * David Alfonso Vacca Buenaventura,
@@ -25,7 +25,7 @@ namespace Assignment4
             Account ac2 = new Account(10001, "Oza","Nidhi",2650);
             Account ac3 = new Account(10002, "Nathani", "Soniya", 2200);
             Account ac4 = new Account(10003, "Vacca", "David", 2350);
-            Account ac5 = new Account(10004, "Gregoria", "Albelis", 3400);
+            Account ac5 = new Account(10004, "Becea", "Albelis", 3400);
             Account ac6 = new Account(10005, "Paz", "Gabriel", 3700);
             accList.Add(ac1);
             accList.Add( ac2);
@@ -34,16 +34,16 @@ namespace Assignment4
             accList.Add(ac5);
             accList.Add(ac6);
             //Option 1 - Add()
-            
-
+           
             ////display for testing
             //foreach (Account item in accList)
             //{
             //    Console.WriteLine($"Account Number is {item.AccountNumber}\tAccount given name is {item.GivenName}\tAccount Family name is {item.FamilyName}\tAccount Balance name is {item.Balance}\n");
             //}
 
-            //----SORTING LIST
-            String firstChoice, secondChoice;
+            /// FUNCTION TO DO THE SORTING OF THE LIST   SortingMenu(accList);
+
+            String userChoice;
             int accNo;
             double amount;
             //String[] opt = {"a", "b", "c", "d"};
@@ -51,34 +51,17 @@ namespace Assignment4
             Validator validator = new Validator();
             do
             {
-                DisplayListMenuOne();
+                //TEMPORARY MENU - TO REPLACE THE ONE THAT WAS FOR THE SORTING LIST
+                //I removed the past menu for the sorting list and I adding just this temporary menu here to be cahnge later for the main menu Albelis
+                Console.WriteLine("TEMPORARY MENU");
+                Console.WriteLine("A - Deposit\nB - Withdaw\nC - Average\nD - Total\nE - Add\nF - Remove\nG - Exit ");
+                Console.WriteLine("Make your choice :");
                 //firstChoice = validator.ValidateMenu("Please make your Choice: ", opt); // suggestion
-                firstChoice = CheckingFirstChoice();
-                switch (firstChoice)
+                userChoice = Console.ReadLine();
+                switch (userChoice)
                 {
-                    case "list":
-                        Console.WriteLine("\n\tUNSORTED LIST\n\t==============");
-                        foreach (Account item in accList) { Console.WriteLine(item); }
-                        Console.ReadKey();
-                        break;
-
-                    case "ascending":
-                        DisplayListAscendingMenu();
-                        secondChoice = CheckingSecondChoice();
-                        Console.WriteLine("\n\tSORTED LIST BY ASCENDING " + secondChoice.ToUpper() + "\n\t===================================");
-                        DisplayAscendingList(accList, secondChoice);
-                        Console.WriteLine("Press any key to go back to the Sorting List Menu");
-                        Console.ReadKey();
-                        break;
-                    case "descending":
-                        DisplayListDescendingMenu();
-                        secondChoice = CheckingSecondChoice();
-                        Console.WriteLine("\n\tSORTED LIST BY DESCENDING " + secondChoice.ToUpper() + "\n\t==================================");
-                        DisplayDescendingList(accList, secondChoice);
-                        Console.WriteLine("Press any key to go back to the Sorting List Menu");
-                        Console.ReadKey();
-                        break;
-                    case "deposite":
+               
+                    case "A"://deposit
                         Console.Write("Enter Account Number:");
                         accNo = Convert.ToInt32(Console.ReadLine());
                         if (validator.IsAccNumberExist(accList, accNo) == true)
@@ -99,7 +82,7 @@ namespace Assignment4
                         
                         Console.ReadKey();
                         break;
-                    case "withdraw":
+                    case "B"://withdraw
                         Console.Write("Enter Account Number:");
                         accNo = Convert.ToInt32(Console.ReadLine());
                         if (validator.IsAccNumberExist(accList, accNo) == true)
@@ -126,7 +109,7 @@ namespace Assignment4
                         }
                         Console.ReadKey();
                         break;
-                    case "average":
+                    case "C"://average
                         int count = accList.Count;
                         Double total = 0;
                         foreach (Account ac in accList)
@@ -137,7 +120,7 @@ namespace Assignment4
                         Console.WriteLine("Average Balance is " + averageBal);
                         Console.ReadKey();
                         break;
-                    case "total":
+                    case "D": //Total
                         total = 0;
                         foreach (Account ac in accList)
                         {
@@ -146,11 +129,11 @@ namespace Assignment4
                         Console.WriteLine("Total Balance is " + total);
                         Console.ReadKey();
                         break;
-                    case "Add":
-                        AddAccount(accList,10000, 10099);
+                    case "E"://add
+                        AddAccount(accList);
                         Console.ReadKey();
                         break;
-                    case "Remove":
+                    case "F"://remove
                         accNo = validator.ValidateInteger("Enter Account Number:",min: 10000); // the question mentions to start at number 10000, that why min is 10000
                         if (validator.IsAccNumberExist(accList, accNo) == true)
                         {
@@ -169,14 +152,14 @@ namespace Assignment4
                         }
                         Console.ReadKey();
                         break;
-                    case "back":
-                        firstChoice = null;
+                    case "G":
+                        userChoice = null;
                         Console.WriteLine("Thank you for using this application !...");
                         Console.ReadKey();
                         break;
                 }
-            } while (firstChoice != null);
-            //-----SORTING LIST
+            } while (userChoice != null);
+            
         }
         public static void AddAccount(List<Account> accList,int floor, int ceil)
         {
@@ -198,74 +181,81 @@ namespace Assignment4
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
-        // -----------SORTING LIST -------
-
-        public static string CheckingFirstChoice()
+        // -----------START SORTING LIST FUNCTIONS -------
+        //call the function SortingMenu to do the sorting
+        public static void SortingMenu(List<Account> accList)
         {
-            String choice = Console.ReadLine().Trim().ToUpper() ;
-            //I need to validate choice
-            //try to use ValidadeChar(MessageToDisplay, array_of_options)
-            switch (choice)
+            String firstChoice;
+            do
             {
-                case "A":
-                    return "list";
-                case "B":
-                    return "ascending";
-                case "C":
-                    return "descending";
-                case "D":
-                    return "deposite";
-                case "E":
-                    return "withdraw";
-                case "F":
-                    return "average";
-                case "G":
-                    return "total";
-                case "H":
-                    return "Add";
-                case "I":
-                    return "Remove";
-                case "J":
-                    return "Back";
-                default: { return null; }
-            }
+                DisplayListMenuOne();
+                firstChoice = Validator.ValidateChoiceSorting();
+                //ENTER VALIDATE FUNCTIONS
+                switch (firstChoice)
+                {
+                    case "A":
+                        Console.WriteLine("\n\tUNSORTED LIST\n\t==============");
+                        foreach (Account item in accList) { Console.WriteLine(item); }
+                        Console.ReadKey();
+                        break;
+                    case "B":
+                        DescendingOrAsceding("ASCENDING", accList);
+                        break;
+                    case "C":
+                        DescendingOrAsceding("DESCENDING", accList);
+                        break;
+                    case "D":
+                        firstChoice = null;
+                        break;
+
+                }
+            } while (firstChoice != null);
+
         }
-        
+
+
+
+        public static void DescendingOrAsceding(string selection, List<Account> accList)
+        {
+            string secondChoice;
+            DisplaySecondMenu(selection);
+            secondChoice = CheckingSecondChoice();
+            Console.WriteLine("\n\tSORTED LIST BY " + selection + " " + secondChoice.ToUpper() + "\n\t===================================");
+            //(selection == "ASCENDING") ? DisplayAscendingList(accList,secondChoice) : DisplayDescendingList(accList,secondChoice);
+            if (selection == "ASCENDING") { DisplayAscendingList(accList, secondChoice); } else { DisplayDescendingList(accList, secondChoice); }
+            Console.WriteLine("Press any key to go back to the Sorting List Menu");
+            Console.ReadKey();
+        }
         public static string CheckingSecondChoice()
         {
-            Enum.TryParse(Console.ReadLine(),out EnumAccountField choice); //It goes with GivenName if there is no match with user's entry            
-            return choice.ToString();            
+            String secondChoice = Validator.ValidateChoiceSorting();
+            //ENTER VALIDATE FUNCTIONS
+            string selection = ((secondChoice == "A") ? EnumAccountField.GivenName.ToString() : (secondChoice == "B") ? EnumAccountField.FamilyName.ToString() : EnumAccountField.Balance.ToString());
+            return selection;
         }
         public static void DisplayListMenuOne()
         {
             Console.Clear();
             Console.WriteLine("\n\t==SORTING LIST MENU==\n\t====================");
-            Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\n" +
-                "D - Deposite Amount\nE - Withdraw Amount\nF - Display Average Balance Amount\nG - Display List Total Balance Amount\n" +
-                "H - Add Account\nI - Remove Account\nJ - Go Back");
+            Console.WriteLine("A - Display Regular List\nB - Display List Ascending Options\nC - Display List Descending Options\nD - Go Back");
             Console.Write("Please make your Choice: ");
         }
-        public static void DisplayListAscendingMenu()
+        public static void DisplaySecondMenu(String displayType)
         {
             Console.Clear();
-            Console.WriteLine("\n\tASCENDING SORTING MENU\n\t========================");
-            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance");
-            Console.Write("Please make your Choice: ");
-        }
-        public static void DisplayListDescendingMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("\n\tDESCENDING SORTING MENU\n\t========================");
-            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance");
+            Console.WriteLine("\n\t" + displayType + " SORTING MENU\n\t========================");
+            Console.WriteLine("A - Display List by Given Name\nB - Display List by Family Name\nC - Display List by Balance");
             Console.Write("Please make your Choice: ");
         }
         public static void DisplayAscendingList(List<Account> accList, string field)
         {
+
             List<Account> sortedAscending = accList.OrderBy(x => {
                 PropertyInfo info = x.GetType().GetProperty(field);
                 return info.GetValue(x);
             }).ToList();
             foreach (Account item in sortedAscending) { Console.WriteLine(item); }
+
         }
         public static void DisplayDescendingList(List<Account> accList, string field)
         {
@@ -276,7 +266,7 @@ namespace Assignment4
             foreach (Account item in sortedAscending) { Console.WriteLine(item); }
         }
 
-        // -----------SORTING LIST -------
+        // -----------END SORTING LIST FUNCTIONS-------
 
     }
 }
