@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,30 +37,32 @@ namespace Assignment4
                     Console.WriteLine($"Please enter a integer number bigger than {min}.");
                     flag = false;
                 }
-                else if (!flag)                
+                else if (!flag)
                     Console.WriteLine("Please enter a number.");
-                
+
             } while (!flag);
             return temp;
         }
 
-        public static int ValidateInteger(string message, int? max = null, int? min=null)
+        public static int ValidateInteger(string message, int? max = null, int? min = null)
         {
             int temp;
             bool flag;
             do
             {
                 Console.Write(message);
-                flag = int.TryParse(Console.ReadLine().Trim(), out temp); 
+                flag = int.TryParse(Console.ReadLine().Trim(), out temp);
                 if (max != null && temp > max)
                 {
                     Console.WriteLine($"Please enter a integer number smaller than {max}.");
                     flag = false;
-                }else if (min != null && temp < min)
+                }
+                else if (min != null && temp < min)
                 {
                     Console.WriteLine($"Please enter a integer number bigger than {min}.");
                     flag = false;
-                }else if (!flag)
+                }
+                else if (!flag)
                     Console.WriteLine("Please enter a number.");
             } while (!flag);
             return temp;

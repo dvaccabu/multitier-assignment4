@@ -40,9 +40,15 @@ namespace Assignment4
             Console.WriteLine("Average Balance is " + averageBal);
         }
 
-        internal void SearchAccount(List<Account> accList)
+        internal void SearchAccount(List<Account> accList,int accNo)
         {
-            throw new NotImplementedException();
+            foreach (Account ac in accList)
+            {
+                if (ac.AccountNumber == accNo)
+                {
+                    Console.WriteLine(ac);
+                }
+            }
         }
 
         internal void Deposit(List<Account> accList, int accNo, double amount)

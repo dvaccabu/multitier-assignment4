@@ -18,7 +18,7 @@ namespace Assignment4
 
         public override string ToString()
         {
-            return AccountNumber+"\t\t"+ GivenName + "\t\t" + FamilyName + "\t\t" + Balance;
+            return AccountNumber + "\t\t" + GivenName + "\t\t" + FamilyName + "\t\t" + Balance;
         }
     }
 }

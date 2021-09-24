@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 /*Group: Albelis Becea,  
@@ -28,7 +28,7 @@ namespace Assignment4
             accList.Add(new Account(10002, "Nathani", "Soniya", 2200));
             accList.Add(new Account(10003, "Vacca", "David", 2350));
             accList.Add(new Account(10004, "Becea", "Albelis", 3400));
-            accList.Add(new Account(10005, "Paz", "Gabriel", 3700));      
+            accList.Add(new Account(10005, "Paz", "Gabriel", 3700));
 
             do
             {
@@ -50,7 +50,7 @@ namespace Assignment4
                     case 3:
                         accNo = Validator.ValidateInteger("Enter Account Number:", MAX_NO_ACCOUNT, MIN_NO_ACCOUNT); // the question mentions to start at number 10000, that why min is 10000
                         if (Validator.IsAccNumberExist(accList, accNo))
-                            ac.SearchAccount(accList);
+                            ac.SearchAccount(accList,accNo);
                         else
                             Console.WriteLine("Account Number does not Exist!!");
                         break;
@@ -111,7 +111,7 @@ namespace Assignment4
                 "9 - Exit");
         }
 
-   
+
         // -----------START SORTING LIST FUNCTIONS -------
         //call the function SortingMenu to do the sorting
         public static void Sort(List<Account> accList, AccountController ac)
