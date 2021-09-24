@@ -19,7 +19,7 @@ namespace Assignment4
         {
             const int MIN_NO_ACCOUNT = 10000, MAX_NO_ACCOUNT = 10099;
             int accNo, option;
-            AccountController ac = new();
+            AccountController ac = new AccountController();
             List<Account> accList = new List<Account>();
 
             //for testing
@@ -94,18 +94,17 @@ namespace Assignment4
         private static void DisplayMainMenu()
         {
             Console.Clear();
-            Console.WriteLine(@"\n\t===MAIN MENU===
-                \t====================
-                1 - Add a bank account
-                2 - Remove a bank account
-                3 - Display the information of a particular client?s account
-                4 - Apply a deposit to a particular account
-                5 - Apply a withdrawal from a particular account
-                6 - Sort and display the list of clients 
-                7 - Display the average balance value of the accounts
-                8 - Display the total balance value of the accounts
-                9 - Exit
-            ");
+            Console.WriteLine("\n\t===MAIN MENU===\n" +
+                "\t====================\n" +
+                "1 - Add a bank account\n" +
+                "2 - Remove a bank account\n" +
+                "3 - Display the information of a particular client's account\n" +
+                "4 - Apply a deposit to a particular account\n" +
+                "5 - Apply a withdrawal from a particular account\n" +
+                "6 - Sort and display the list of clients\n" +
+                "7 - Display the average balance value of the accounts\n" +
+                "8 - Display the total balance value of the accounts\n" +
+                "9 - Exit");
         }
 
    

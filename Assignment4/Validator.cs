@@ -71,11 +71,11 @@ namespace Assignment4
             else return false;
         }
 
-        public static int FindEmptyAccNb(List<Account> accList, int floor)
+        public static int FindEmptyAccNb(List<Account> accList, int floor, int ceil)
         {
             //Finds a empty slot in AccNumber and returns it.
             int result = floor;
-            while (IsAccNumberExist(accList, result))
+            while (IsAccNumberExist(accList, result) && result <= ceil)
                 result++;
             return result;
         }

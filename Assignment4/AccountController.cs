@@ -13,7 +13,7 @@ namespace Assignment4
 
         public void AddAccount(List<Account> accList, int floor, int ceil)
         {
-            byte accNumb; //byte because every account number start with a fixed "10". It may change deppending on the team.
+            int accNumb; //byte because every account number start with a fixed "10". It may change deppending on the team.
             string givName, famName;
             const int MAX_NB_OF_ACC = 100;
             const int INITIAL_BALANCE_VALUE = 0;
@@ -23,7 +23,7 @@ namespace Assignment4
                 accNumb = Validator.FindEmptyAccNb(accList, floor, ceil);
                 givName = Validator.ValidateString("Please enter your given name: ");
                 famName = Validator.ValidateString("Please enter your family name: ");
-                accList.Add(new Account((accNumb + 10000), famName, givName, INITIAL_BALANCE_VALUE)); // added 10000 because it starts at 10000
+                accList.Add(new Account(accNumb, famName, givName, INITIAL_BALANCE_VALUE)); // added 10000 because it starts at 10000
             }
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
@@ -47,7 +47,7 @@ namespace Assignment4
 
         internal void deposit(List<Account> accList, int accNo, double amount)
         {
-             
+
             foreach (Account ac in accList)
             {
                 if (ac.AccountNumber == accNo)
