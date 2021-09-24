@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-/*Group: Albelis Gregoria Becea Marrero,  
+/*Group: Albelis Becea,  
  * Rameswari Vipul Bhoi,
  * Soniya Sirajali Nathani,
  * David Alfonso Vacca Buenaventura,
@@ -25,7 +25,7 @@ namespace Assignment4
             Account ac2 = new Account(10001, "Oza","Nidhi",2650);
             Account ac3 = new Account(10002, "Nathani", "Soniya", 2200);
             Account ac4 = new Account(10003, "Vacca", "David", 2350);
-            Account ac5 = new Account(10004, "Gregoria", "Albelis", 3400);
+            Account ac5 = new Account(10004, "Becea", "Albelis", 3400);
             Account ac6 = new Account(10005, "Paz", "Gabriel", 3700);
             accList.Add(ac1);
             accList.Add( ac2);
@@ -34,8 +34,7 @@ namespace Assignment4
             accList.Add(ac5);
             accList.Add(ac6);
             //Option 1 - Add()
-
-
+           
             ////display for testing
             //foreach (Account item in accList)
             //{
@@ -230,7 +229,7 @@ namespace Assignment4
         {
             String secondChoice = Validator.ValidateChoiceSorting();
             //ENTER VALIDATE FUNCTIONS
-            string selection = ((secondChoice == "A") ? "GivenName" : (secondChoice == "B") ? "FamilyName" : "Balance");
+            string selection = ((secondChoice == "A") ? EnumAccountField.GivenName.ToString() : (secondChoice == "B") ? EnumAccountField.FamilyName.ToString() : EnumAccountField.Balance.ToString());
             return selection;
         }
         public static void DisplayListMenuOne()
