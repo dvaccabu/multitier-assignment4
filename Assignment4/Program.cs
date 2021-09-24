@@ -87,6 +87,7 @@ namespace Assignment4
                         Console.WriteLine("Thank you for using this application !...");
                         break;
                 }
+                Console.Write("Press a key to continue");
                 Console.ReadKey();
             } while (option != 9);
         }
@@ -94,7 +95,7 @@ namespace Assignment4
         private static void DisplayMainMenu()
         {
             Console.Clear();
-            Console.WriteLine("\n\t===MAIN MENU===\n" +
+            Console.WriteLine("\n\t=====MAIN  MENU=====\n" +
                 "\t====================\n" +
                 "1 - Add a bank account\n" +
                 "2 - Remove a bank account\n" +
@@ -123,20 +124,25 @@ namespace Assignment4
                     case 1:
                         Console.WriteLine("\n\tUNSORTED LIST\n\t==============");
                         foreach (Account item in accList) { Console.WriteLine(item); }
+                        Console.Write("Press any key to go back to the Sorting List Menu");
+                        Console.ReadKey();
                         break;
                     case 2:
                     case 3:
                         string direction = firstChoice == 2 ? "ASCENDING" : "DESCENDING";
-                        DisplaySortingFieldMenu("DESCENDING");
-                        secondChoice = Validator.ValidateInteger("Please make your Choice: ", 4, 1);
-                        if(secondChoice != 4)
+                        do
                         {
-                            string field = ((secondChoice == 1) ? EnumAccountField.GivenName.ToString() : (secondChoice == 2) ? EnumAccountField.FamilyName.ToString() : EnumAccountField.Balance.ToString());
-                            Console.WriteLine("\n\tSORTED LIST BY " + direction + " " + field.ToUpper() + "\n\t===================================");
-                            if (direction == "ASCENDING") ac.DisplayAscendingList(accList, field); else ac.DisplayDescendingList(accList, field);
-                            Console.WriteLine("Press any key to go back to the Sorting List Menu");
-                            Console.ReadKey();
-                        }
+                            DisplaySortingFieldMenu(direction);
+                            secondChoice = Validator.ValidateInteger("Please make your Choice: ", 4, 1);
+                            if (secondChoice != 4)
+                            {
+                                string field = ((secondChoice == 1) ? EnumAccountField.GivenName.ToString() : (secondChoice == 2) ? EnumAccountField.FamilyName.ToString() : EnumAccountField.Balance.ToString());
+                                Console.WriteLine("\n\tSORTED LIST BY " + direction + " " + field.ToUpper() + "\n\t===================================");
+                                if (direction == "ASCENDING") ac.DisplayAscendingList(accList, field); else ac.DisplayDescendingList(accList, field);
+                                Console.Write("Press any key to go back to the Sorting List Menu");
+                                Console.ReadKey();
+                            }
+                        } while (secondChoice != 4);
                         break;
                     case 4:
                         break;
