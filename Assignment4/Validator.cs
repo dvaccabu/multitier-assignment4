@@ -110,5 +110,16 @@ namespace Assignment4
             if (choice != "1" || choice != "2" || choice != "3") { return false; }
             else { return true; }
         }
+        public static string ValidateChoiceSorting()
+        {
+            string choice;
+            choice = Console.ReadLine().ToUpper().Trim();
+            while (choice != "A" && choice != "B" && choice != "C" && choice != "D")
+            {
+                Console.WriteLine("Please select an option available on the menu, try againg");
+                choice = Console.ReadLine().ToUpper().Trim();
+            }
+            return choice;
+        }
     }
 }
