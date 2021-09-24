@@ -90,10 +90,10 @@ namespace Assignment4
             if (accList.Exists(x => x.AccountNumber == accNumber)) return true;
             else return false;
         }
-        public byte FindEmptyAccNb(List<Account> accList)
+        public int FindEmptyAccNb(List<Account> accList, int floor)
         {
             //Finds a empty slot in AccNumber and returns it.
-            byte result = 0;
+            int result = floor;
             while (IsAccNumberExist(accList, result))
                 result++;
             return result;

@@ -147,7 +147,7 @@ namespace Assignment4
                         Console.ReadKey();
                         break;
                     case "Add":
-                        AddAccount(accList);
+                        AddAccount(accList,10000, 10099);
                         Console.ReadKey();
                         break;
                     case "Remove":
@@ -178,21 +178,22 @@ namespace Assignment4
             } while (firstChoice != null);
             //-----SORTING LIST
         }
-        public static void AddAccount(List<Account> accList)
+        public static void AddAccount(List<Account> accList,int floor, int ceil)
         {
-            byte accNumb; //byte because every account number start with a fixed "10". It may change deppending on the team.
+            int accNumb; 
             string givName, famName;
-            const int MAX_NB_OF_ACC = 100;           
+            int maxNbAccounts = ceil - floor;           
             const int INITIAL_BALANCE_VALUE = 0;
 
             Validator validator = new Validator();
 
-            if (accList.Count <= MAX_NB_OF_ACC) //Checks if there is any space left for account
+            if (accList.Count <= maxNbAccounts) //Checks if there is any space left for account
             {               
-                accNumb = validator.FindEmptyAccNb(accList);
+                accNumb = validator.FindEmptyAccNb(accList, floor);
                 givName = validator.ValidateString("Please enter your given name: ");
                 famName = validator.ValidateString("Please enter your family name: ");
-                accList.Add(new Account((accNumb + 10000), famName, givName, INITIAL_BALANCE_VALUE)); // added 10000 because it starts at 10000
+                accList.Add(new Account((accNumb), famName, givName, INITIAL_BALANCE_VALUE));
+                Console.WriteLine("The account was created.");
             }
             else
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
