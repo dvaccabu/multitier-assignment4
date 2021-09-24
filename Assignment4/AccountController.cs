@@ -29,7 +29,7 @@ namespace Assignment4
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
 
-        internal void displayAvgBalance(List<Account> accList)
+        internal void DisplayAvgBalance(List<Account> accList)
         {
             double total = 0;
             foreach (Account ac in accList)
@@ -40,12 +40,12 @@ namespace Assignment4
             Console.WriteLine("Average Balance is " + averageBal);
         }
 
-        internal void searchAccount(List<Account> accList)
+        internal void SearchAccount(List<Account> accList)
         {
             throw new NotImplementedException();
         }
 
-        internal void deposit(List<Account> accList, int accNo, double amount)
+        internal void Deposit(List<Account> accList, int accNo, double amount)
         {
 
             foreach (Account ac in accList)
@@ -58,7 +58,7 @@ namespace Assignment4
             Console.WriteLine("Deposite Succeed!..");
         }
 
-        internal void withdraw(List<Account> accList, int accNo, double amount)
+        internal void Withdraw(List<Account> accList, int accNo, double amount)
         {
             bool isAmount = false;
             do
@@ -77,7 +77,7 @@ namespace Assignment4
             } while (isAmount == false);
         }
 
-        internal void removeAccount(List<Account> accList, int accNo)
+        internal void RemoveAccount(List<Account> accList, int accNo)
         {
             foreach (Account ac in accList)
             {
@@ -90,7 +90,7 @@ namespace Assignment4
             }
         }
 
-        internal void displayTotalBalance(List<Account> accList)
+        internal void DisplayTotalBalance(List<Account> accList)
         {
             double total = 0;
             foreach (Account ac in accList)

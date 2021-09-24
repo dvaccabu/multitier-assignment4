@@ -43,14 +43,14 @@ namespace Assignment4
                     case 2:
                         accNo = Validator.ValidateInteger("Enter Account Number:", MAX_NO_ACCOUNT, MIN_NO_ACCOUNT); // the question mentions to start at number 10000, that why min is 10000
                         if (Validator.IsAccNumberExist(accList, accNo))
-                            ac.removeAccount(accList, accNo);
+                            ac.RemoveAccount(accList, accNo);
                         else
                             Console.WriteLine("Account Number does not Exist!!");
                         break;
                     case 3:
                         accNo = Validator.ValidateInteger("Enter Account Number:", MAX_NO_ACCOUNT, MIN_NO_ACCOUNT); // the question mentions to start at number 10000, that why min is 10000
                         if (Validator.IsAccNumberExist(accList, accNo))
-                            ac.searchAccount(accList);
+                            ac.SearchAccount(accList);
                         else
                             Console.WriteLine("Account Number does not Exist!!");
                         break;
@@ -59,7 +59,7 @@ namespace Assignment4
                         if (Validator.IsAccNumberExist(accList, accNo))
                         {
                             double amount = Validator.ValidateDouble("Enter Deposit Balance Amount:", min: 0);
-                            ac.deposit(accList, accNo, amount);
+                            ac.Deposit(accList, accNo, amount);
                         }
                         else
                             Console.WriteLine("Account Number does not Exist!!");
@@ -69,7 +69,7 @@ namespace Assignment4
                         if (Validator.IsAccNumberExist(accList, accNo))
                         {
                             double amount = Validator.ValidateDouble("Enter Withdraw Balance Amount:", min: 0);
-                            ac.withdraw(accList, accNo, amount);
+                            ac.Withdraw(accList, accNo, amount);
                         }
                         else
                             Console.WriteLine("Account Number does not Exist!!");
@@ -78,10 +78,10 @@ namespace Assignment4
                         Sort(accList, ac);
                         break;
                     case 7:
-                        ac.displayAvgBalance(accList);
+                        ac.DisplayAvgBalance(accList);
                         break;
                     case 8:
-                        ac.displayTotalBalance(accList);
+                        ac.DisplayTotalBalance(accList);
                         break;
                     case 9:
                         Console.WriteLine("Thank you for using this application !...");
