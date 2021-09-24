@@ -47,6 +47,8 @@ namespace Assignment4
             int accNo;
             double amount;
             //String[] opt = {"a", "b", "c", "d"};
+            const int FLOOR = 10000;
+            const int CEIL = FLOOR + 99;
             
             Validator validator = new Validator();
             do
@@ -130,7 +132,7 @@ namespace Assignment4
                         Console.ReadKey();
                         break;
                     case "E"://add
-                        AddAccount(accList);
+                        AddAccount(accList, FLOOR, CEIL);
                         Console.ReadKey();
                         break;
                     case "F"://remove
