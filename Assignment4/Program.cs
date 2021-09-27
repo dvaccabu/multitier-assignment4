@@ -22,14 +22,6 @@ namespace Assignment4
             AccountController ac = new AccountController();
             List<Account> accList = new List<Account>();
 
-            //for testing
-            accList.Add(new Account(10000, "Bhoi", "Rameswari", 2300));
-            accList.Add(new Account(10001, "Oza", "Nidhi", 2650));
-            accList.Add(new Account(10002, "Nathani", "Soniya", 2200));
-            accList.Add(new Account(10003, "Vacca", "David", 2350));
-            accList.Add(new Account(10004, "Becea", "Albelis", 3400));
-            accList.Add(new Account(10005, "Paz", "Gabriel", 3700));
-
             do
             {
                 DisplayMainMenu();

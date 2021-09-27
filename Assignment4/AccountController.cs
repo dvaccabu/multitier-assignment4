@@ -29,76 +29,42 @@ namespace Assignment4
                 Console.WriteLine("It is not possible to add another account. The counter slot reached its limit.");
         }
 
-        internal void DisplayAvgBalance(List<Account> accList)
-        {
-            double total = 0;
-            foreach (Account ac in accList)
-            {
-                total += ac.Balance;
-            }
-            double averageBal = total / accList.Count;
-            Console.WriteLine("Average Balance is " + averageBal);
-        }
-
         internal void SearchAccount(List<Account> accList,int accNo)
         {
-            foreach (Account ac in accList)
-            {
-                if (ac.AccountNumber == accNo)
-                {
-                    Console.WriteLine(ac);
-                }
-            }
+            Account ac = accList.First(item => item.AccountNumber == accNo);
+            Console.WriteLine(ac);
+           
         }
 
         internal void Deposit(List<Account> accList, int accNo, double amount)
         {
 
-            foreach (Account ac in accList)
-            {
-                if (ac.AccountNumber == accNo)
-                {
-                    ac.Balance += amount;
-                    break;
-                }
-            }
+            accList.First(item => item.AccountNumber == accNo).Balance += amount;
             Console.WriteLine("Deposite Succeed!..");
         }
 
         internal void Withdraw(List<Account> accList, int accNo, double amount)
         {
-            foreach (Account ac in accList)
-            {
-                if (ac.AccountNumber == accNo)
-                {
-                    ac.Balance -= amount;
-                    Console.WriteLine("Withdraw Succeed!..");
-                    break;
-                }
-            }
+            accList.First(item => item.AccountNumber == accNo).Balance -= amount;
+            Console.WriteLine("Withdraw Succeed!..");
         }
 
         internal void RemoveAccount(List<Account> accList, int accNo)
         {
-            foreach (Account ac in accList)
-            {
-                if (ac.AccountNumber == accNo)
-                {
-                    accList.Remove(ac);
-                    Console.WriteLine("Account Removed");
-                    break;
-                }
-            }
+            accList.RemoveAll(x => x.AccountNumber == accNo);
+            Console.WriteLine("Account Removed");
         }
 
         internal void DisplayTotalBalance(List<Account> accList)
         {
-            double total = 0;
-            foreach (Account ac in accList)
-            {
-                total += ac.Balance;
-            }
+            double total = accList.Sum(x => x.Balance);
             Console.WriteLine("Total Balance is " + total);
+        }
+
+        internal void DisplayAvgBalance(List<Account> accList)
+        {
+            double averageBal = accList.Average(x => x.Balance);
+            Console.WriteLine("Average Balance is " + averageBal);
         }
 
         public void DisplayAscendingList(List<Account> accList, string field)
