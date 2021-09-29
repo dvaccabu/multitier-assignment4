@@ -15,7 +15,6 @@ namespace Assignment4
 {
     class Program
     {
-        Console.WriteLine("hola");
         static void Main(string[] args)
         {
             Console.WriteLine("test");
