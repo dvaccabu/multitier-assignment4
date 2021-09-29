@@ -18,6 +18,7 @@ namespace Assignment4
         Console.WriteLine("hola");
         static void Main(string[] args)
         {
+            Console.WriteLine("test");
             const int MIN_NO_ACCOUNT = 10000, MAX_NO_ACCOUNT = 10099;
             int accNo, option;
             AccountController ac = new AccountController();

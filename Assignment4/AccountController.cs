@@ -101,24 +101,49 @@ namespace Assignment4
             Console.WriteLine("Total Balance is " + total);
         }
 
-        public void DisplayAscendingList(List<Account> accList, string field)
+        public static void SortList(List<Account> accList, String sortingType, String field)
         {
-
-            List<Account> sortedAscending = accList.OrderBy(x => {
-                PropertyInfo info = x.GetType().GetProperty(field);
-                return info.GetValue(x);
-            }).ToList();
-            foreach (Account item in sortedAscending) { Console.WriteLine(item); }
-
+            while (true)
+            {
+                bool stat = false;
+                for (int i = 1; i < accList.Count; i++)
+                {
+                    switch (field)
+                    {
+                        case "Balance":
+                            if ((sortingType == "ASCENDING") ? (accList[i - 1].Balance > (accList[i].Balance) : (accList[i - 1].Balance) < (accList[i].Balance))
+                            {
+                                sortingMec(accList, i);
+                                stat = true;
+                            }
+                            break;
+                        case "GivenName":
+                            if ((sortingType == "ASCENDING") ? String.Compare(accList[i - 1].GivenName, accList[i].GivenName) > 0 : String.Compare(accList[i - 1].GivenName, accList[i].GivenName) < 0)
+                            {
+                                sortingMec(accList, i);
+                                stat = true;
+                            }
+                            break;
+                        case "FamilyName":
+                            if ((sortingType == "ASCENDING") ? String.Compare(accList[i - 1].FamilyName, accList[i].FamilyName) > 0 : String.Compare(accList[i - 1].FamilyName, accList[i].FamilyName) < 0)
+                            {
+                                sortingMec(accList, i);
+                                stat = true;
+                            }
+                            break;
+                    }
+                }
+                if (!stat)
+                    break;
+            }
+            foreach (Account item in accList) { Console.WriteLine(item); }
         }
 
-        public void DisplayDescendingList(List<Account> accList, string field)
+        public static void sortingMec(List<Account> accList, int i)
         {
-            List<Account> sortedAscending = accList.OrderByDescending(x => {
-                PropertyInfo info = x.GetType().GetProperty(field);
-                return info.GetValue(x);
-            }).ToList();
-            foreach (Account item in sortedAscending) { Console.WriteLine(item); }
+            Account temp = accList[i - 1];
+            accList[i - 1] = accList[i];
+            accList[i] = temp;
         }
     }
 }
