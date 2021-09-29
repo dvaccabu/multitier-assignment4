@@ -15,6 +15,7 @@ namespace Assignment4
 {
     class Program
     {
+        Console.WriteLine("hola");
         static void Main(string[] args)
         {
             const int MIN_NO_ACCOUNT = 10000, MAX_NO_ACCOUNT = 10099;
