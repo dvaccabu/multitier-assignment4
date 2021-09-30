@@ -101,7 +101,7 @@ namespace Assignment4
             Console.WriteLine("Total Balance is " + total);
         }
 
-        public static void SortList(List<Account> accList, String sortingType, String field)
+        public void sortList(List<Account> accList, String sortingType, String field)
         {
             while (true)
             {
@@ -111,7 +111,7 @@ namespace Assignment4
                     switch (field)
                     {
                         case "Balance":
-                            if ((sortingType == "ASCENDING") ? (accList[i - 1].Balance > (accList[i].Balance) : (accList[i - 1].Balance) < (accList[i].Balance))
+                            if ((sortingType == "ASCENDING") ? (accList[i - 1].Balance) > (accList[i].Balance):(accList[i - 1].Balance) < (accList[i].Balance))
                             {
                                 sortingMec(accList, i);
                                 stat = true;
@@ -139,7 +139,7 @@ namespace Assignment4
             foreach (Account item in accList) { Console.WriteLine(item); }
         }
 
-        public static void sortingMec(List<Account> accList, int i)
+        public void sortingMec(List<Account> accList, int i)
         {
             Account temp = accList[i - 1];
             accList[i - 1] = accList[i];

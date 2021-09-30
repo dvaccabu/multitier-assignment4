@@ -17,7 +17,7 @@ namespace Assignment4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
+          
             const int MIN_NO_ACCOUNT = 10000, MAX_NO_ACCOUNT = 10099;
             int accNo, option;
             AccountController ac = new AccountController();
@@ -142,7 +142,7 @@ namespace Assignment4
                             {
                                 string field = ((secondChoice == 1) ? EnumAccountField.GivenName.ToString() : (secondChoice == 2) ? EnumAccountField.FamilyName.ToString() : EnumAccountField.Balance.ToString());
                                 Console.WriteLine("\n\tSORTED LIST BY " + direction + " " + field.ToUpper() + "\n\t===================================");
-                                if (direction == "ASCENDING") ac.DisplayAscendingList(accList, field); else ac.DisplayDescendingList(accList, field);
+                                ac.sortList(accList, direction, field);
                                 Console.Write("Press any key to go back to the Sorting List Menu");
                                 Console.ReadKey();
                             }
@@ -167,7 +167,7 @@ namespace Assignment4
         {
             Console.Clear();
             Console.WriteLine("\n\t" + displayType + " SORTING MENU\n\t========================");
-            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance\n4 - Go Back");
+            Console.WriteLine("1 - Display List by Family Name\n2 - Display List by Given Name\n3 - Display List by Balance\n4 - Go Back");
         }
         // -----------END SORTING LIST FUNCTIONS-------
 
