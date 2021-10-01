@@ -79,7 +79,7 @@ namespace Assignment4
                             Console.WriteLine("Account Number does not Exist!!");
                         break;
                     case 6:
-                        Sort(accList, ac);
+                        Util.Sort(accList, ac);
                         break;
                     case 7:
                         ac.DisplayAvgBalance(accList);
@@ -112,7 +112,7 @@ namespace Assignment4
                 "9 - Exit");
         }
 
-
+        //REMOVE?
         // -----------START SORTING LIST FUNCTIONS -------
         //call the function SortingMenu to do the sorting
         public static void Sort(List<Account> accList, AccountController ac)
@@ -155,7 +155,6 @@ namespace Assignment4
             } while (firstChoice != 4);
 
         }
-
         public static void DisplayMenuSortingDirection()
         {
             Console.Clear();

@@ -20,7 +20,7 @@ namespace Assignment4
 
             if (accList.Count <= MAX_NB_OF_ACC) //Checks if there is any space left for account
             {
-                accNumb = Validator.FindEmptyAccNb(accList, floor, ceil);
+                accNumb = Util.FindEmptyAccNb(accList, floor, ceil);
                 givName = Validator.ValidateString("Please enter your given name: ");
                 famName = Validator.ValidateString("Please enter your family name: ");
                 accList.Add(new Account(accNumb, famName, givName, INITIAL_BALANCE_VALUE)); // added 10000 because it starts at 10000

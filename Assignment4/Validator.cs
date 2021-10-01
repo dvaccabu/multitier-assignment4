@@ -80,15 +80,7 @@ namespace Assignment4
                 if (ac.AccountNumber == accNumber) return true;
             return false;
         }
-
-        public static int FindEmptyAccNb(List<Account> accList, int floor, int ceil)
-        {
-            //Finds a empty slot in AccNumber and returns it.
-            int result = floor;
-            while (IsAccNumberExist(accList, result) && result <= ceil)
-                result++;
-            return result;
-        }
+                
 
         internal static bool ValidateWithdrawBalance(List<Account> accList, int accNo, double amount)
         {
