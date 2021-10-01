@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,8 +14,16 @@ namespace Assignment4
             {
                 Console.Write(message);
                 temp = Console.ReadLine().Trim();
-            } while (string.IsNullOrEmpty(temp) || Regex.IsMatch(temp, @"\d+"));
+            } while (temp == null || temp == "" || HasItNumber(temp));
             return temp;
+        }
+
+        public static bool HasItNumber(string phrase)
+        {
+            char[] characters = phrase.ToCharArray();
+            foreach (char c in characters)
+                if (int.TryParse(c.ToString(), out _)) return true;
+            return false;
         }
 
         public static double ValidateDouble(string message, int? max = null, int? min = null)
@@ -67,13 +74,6 @@ namespace Assignment4
             } while (!flag);
             return temp;
         }
-
-        /*public static bool IsAccNumberExist(List<Account> accList, int accNumber)
-        {
-            if (accList.Exists(x => x.AccountNumber == accNumber)) return true;
-            else return false;
-        }*/
-
         public static bool IsAccNumberExist(List<Account> accList, int accNumber)
         {
             foreach (Account ac in accList)
