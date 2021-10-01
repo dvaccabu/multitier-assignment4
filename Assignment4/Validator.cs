@@ -68,10 +68,17 @@ namespace Assignment4
             return temp;
         }
 
-        public static bool IsAccNumberExist(List<Account> accList, int accNumber)
+        /*public static bool IsAccNumberExist(List<Account> accList, int accNumber)
         {
             if (accList.Exists(x => x.AccountNumber == accNumber)) return true;
             else return false;
+        }*/
+
+        public static bool IsAccNumberExist(List<Account> accList, int accNumber)
+        {
+            foreach (Account ac in accList)
+                if (ac.AccountNumber == accNumber) return true;
+            return false;
         }
 
         public static int FindEmptyAccNb(List<Account> accList, int floor, int ceil)
