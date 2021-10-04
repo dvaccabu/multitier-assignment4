@@ -166,7 +166,7 @@ namespace Assignment4
         {
             Console.Clear();
             Console.WriteLine("\n\t" + displayType + " SORTING MENU\n\t========================");
-            Console.WriteLine("1 - Display List by Family Name\n2 - Display List by Given Name\n3 - Display List by Balance\n4 - Go Back");
+            Console.WriteLine("1 - Display List by Given Name\n2 - Display List by Family Name\n3 - Display List by Balance\n4 - Go Back");
         }
         // -----------END SORTING LIST FUNCTIONS-------
 
